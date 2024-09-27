@@ -51,7 +51,7 @@ CREATE TABLE `detail_barang` (
   `tanggal_kembali` date DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_detail`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `detail_barang` */
 
@@ -64,7 +64,9 @@ insert  into `detail_barang`(`id_detail`,`id_pembayaran`,`id_barang`,`jumlah`,`t
 (66,45,67,1,'2024-09-28','Sedang Di Pinjam'),
 (67,46,68,1,'2024-09-26','Sedang Di Pinjam'),
 (68,46,72,2,'2024-09-27','Sudah Di Kembalikan'),
-(69,47,66,2,'2024-09-27','Sedang Di Pinjam');
+(69,47,66,2,'2024-09-27','Sedang Di Pinjam'),
+(70,48,70,2,'2024-09-29','Sedang Di Pinjam'),
+(71,48,68,1,'2024-09-30','Sedang Di Pinjam');
 
 /*Table structure for table `kategori` */
 
@@ -129,7 +131,7 @@ CREATE TABLE `pembayaran` (
   `tanggal_pembelian` date DEFAULT NULL,
   `total_pembelian` double DEFAULT NULL,
   PRIMARY KEY (`id_pembayaran`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `pembayaran` */
 
@@ -138,7 +140,8 @@ insert  into `pembayaran`(`id_pembayaran`,`id_pelanggan`,`tanggal_pembelian`,`to
 (44,130,'2024-09-26',5),
 (45,132,'2024-09-26',1),
 (46,134,'2024-09-26',3),
-(47,133,'2024-09-26',2);
+(47,133,'2024-09-26',2),
+(48,129,'2024-09-27',3);
 
 /*Table structure for table `user` */
 

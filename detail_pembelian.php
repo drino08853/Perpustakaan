@@ -59,18 +59,22 @@
                                 <th>Judul Buku</th>
                                 <th>Jumlah Pinjam</th>
                                 <th>Tanggal Kembali</th>
+                                <th>Durasi Pinjam</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $nomor = 1; ?>
-                            <?php $ambil = $koneksi->query("SELECT * FROM detail_barang JOIN barang ON detail_barang.id_barang=barang.id_barang WHERE detail_barang.id_pembayaran='$_GET[id]'"); ?>
+                            <?php $ambil = $koneksi->query("SELECT detail_barang.*, barang.*, pembayaran.*, 
+                                        DATEDIFF(tanggal_kembali, tanggal_pembelian) AS lama FROM detail_barang JOIN barang ON detail_barang.id_barang = barang.id_barang
+                                        JOIN pembayaran ON pembayaran.id_pembayaran = detail_barang.id_pembayaran WHERE detail_barang.id_pembayaran='$_GET[id]'"); ?>
                             <?php while ($pecah = $ambil->fetch_assoc()) { ?>
                                 <tr>
                                     <td><?php echo $nomor; ?></td>
                                     <td><?php echo $pecah['nama_barang']; ?></td>
                                     <td><?php echo $pecah['jumlah']; ?></td>
                                     <td><?php echo $pecah['tanggal_kembali']; ?></td>
+                                    <td><?php echo $pecah['lama']; ?> Hari</td>
                                     <td><?php echo $pecah['status']; ?></td>
                                 </tr>
                                 <?php $nomor++; ?>

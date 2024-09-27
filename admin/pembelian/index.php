@@ -50,14 +50,16 @@ while ($d = mysqli_fetch_array($data)) {
                                             <th>Judul Buku</th>
                                             <th>Jumlah Pinjam</th>
                                             <th>Tanggal Pengembalian</th>
+                                            <th>Durasi Pinjam</th>
                                             <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        $detail = mysqli_query($koneksi, "SELECT * FROM detail_barang JOIN barang ON 
-                                        detail_barang.id_barang=barang.id_barang WHERE detail_barang.id_pembayaran='$d[id_pembayaran]'");
+                                        $detail = mysqli_query($koneksi, "SELECT detail_barang.*, barang.*, pembayaran.*, 
+                                        DATEDIFF(tanggal_kembali, tanggal_pembelian) AS lama FROM detail_barang JOIN barang ON detail_barang.id_barang = barang.id_barang
+                                        JOIN pembayaran ON pembayaran.id_pembayaran = detail_barang.id_pembayaran WHERE detail_barang.id_pembayaran='$d[id_pembayaran]'");
                                         while ($dt = mysqli_fetch_array($detail)) {
                                         ?>
                                             <tr>
@@ -65,6 +67,7 @@ while ($d = mysqli_fetch_array($data)) {
                                                 <td><?= $dt['nama_barang']; ?></td>
                                                 <td><?= $dt['jumlah']; ?></td>
                                                 <td><?= $dt['tanggal_kembali']; ?></td>
+                                                <td><?= $dt['lama']; ?> Hari</td>
                                                 <td>
                                                     <?php
                                                     if ($dt['status'] == 'Sedang Di Pinjam') {
